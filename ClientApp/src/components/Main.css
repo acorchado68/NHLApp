@@ -1,0 +1,590 @@
+html, body {
+  height:100%;
+  margin: 0;
+}
+body {
+  display: flex;
+  flex-direction: column;
+}
+#root {
+  flex: 1 0 auto;
+  flex-grow: 1;
+}
+footer {
+  flex-shrink: 0;
+}
+
+i {
+  float: left;
+  -webkit-text-stroke: 1px;
+}
+
+.flex-sm-col-reverse {
+  flex-direction: column !important;
+}
+
+.carousel-control-prev-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23000' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E") !important;
+ }
+ 
+ .carousel-control-next-icon {
+   background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23000' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E") !important;
+ }
+
+ .carouselButtonLeft {
+  margin-left: -150px;
+ }
+
+ .carouselButtonRight {
+  margin-right: -150px;
+ }
+
+ .carousel-indicators {
+  margin-bottom: -15px !important;
+ }
+ .carousel-indicators [data-bs-target] {
+  text-indent: -150px !important;
+ }
+
+ .carousel-indicators button {
+  padding-left: 100px !important;
+ }
+
+.picker {
+  padding-bottom: 20px;
+}
+
+#datePicker {
+  text-align: center;
+}
+
+a {
+  color: rgb(51, 51, 51);
+  text-decoration: none;
+}
+  a:hover {
+    font-weight: bold;
+  }
+
+td {
+  vertical-align: middle;
+}
+
+thead > tr > th:not(:first-child) {
+  font-size: 12px;
+}
+
+.footer > .container {
+  margin: auto;
+  float: left;
+}
+
+.active {
+  font-weight: bold;
+}
+
+.standingsPosition {
+  padding-left: 5px;
+}
+
+.standingsLogo {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.filters {
+  display: flex;
+  flex-direction: row;
+}
+
+.filters > *:not(:last-child) {
+  margin: 0 20px;
+}
+
+.statsWrapper {
+  box-shadow: none;
+  margin-bottom: 0px;
+  padding: 30px 20px 10px;
+  position: relative;
+}
+
+.statsContainer {
+  display: flex;
+  height: 100%;
+  flex-direction: row;
+  box-sizing: border-box;
+}
+
+.statsTypeSelectionContainer {
+  display: flex;
+  border-bottom: 1px solid rgb(210, 210, 210);
+  padding-left: 10px;
+}
+
+.statsTypeItem {
+  -moz-box-align: center;
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+  font-size: 14px;
+  margin-right: 20px;
+  padding: 14px 0px;
+  text-transform: uppercase;
+}
+  .statsTypeItem.active {
+    border-bottom: 4px solid rgb(0, 0, 0);
+    color: rgb(37, 37, 37);
+    cursor: default;
+    font-weight: bold;
+  }
+
+.statsSecondRow {
+  margin-top: 30px;
+}
+
+.statsSectionHeader {
+  font-weight: bold;
+  margin: 0px;
+  box-sizing: border-box;
+}
+
+.statsList {
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: 0%;
+  text-align: right;
+}
+
+.statsLeaderContent {
+  display: flex;
+  flex-direction: column;
+  -moz-box-align: center;
+  align-items: center;
+  padding-top: 25px;
+  flex: 1 1 0%;
+}
+
+.statsLeaderHeadshotContainer {
+  display: block;
+  position: relative;
+}
+
+.statsLeaderHeadshot {
+  border: 1px solid rgb(210, 210, 210);
+  border-radius: 50%;
+  height: 100px;
+  width: 100px;
+}
+
+.team-display-container {
+  display: flex;
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: 0%;
+  position: absolute;
+  bottom: 0px;
+  right: -20px;
+}
+
+.team-display {
+  display: flex;
+  align-items: center;
+  flex: 1 1 0%;
+  color: #000000;
+}
+
+.team-logo {
+  width: 48px;
+  height: 32px;
+}
+
+.leaderDetails {
+  display: flex;
+  -moz-box-align: center;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 5px;
+  width: 150px;
+}
+
+.leaderNumberContainer {
+  display: inline-block;
+  vertical-align: top;
+  padding-right: 5px;
+  line-height: 30px;
+  font-size: 20px;
+}
+  .leaderNumberContainer > span:first-child {
+    font-size: 16px;
+    vertical-align: top;
+  }
+
+.leaderNameContainer {
+  border-left: 1px solid rgb(102, 102, 102);
+  display: inline-block;
+  font-size: 16px;
+  line-height: 16px;
+  padding-left: 5px;
+  text-align: left;
+}
+  .leaderNameContainer > span {
+    display: block;
+  }
+
+.leaderTeamContainer {
+  display: block;
+  font-size: 12px;
+  line-height: 22px;
+}
+  .leaderTeamContainer:hover {
+    color: rgb(51, 51, 51);
+    text-decoration: none;
+    font-weight: bold;
+  }
+  .leaderTeamContainer > span:nth-child(2) {
+    padding: 0px 5px;
+    border-left: 1px solid rgb(102, 102, 102);
+  }
+  .leaderTeamContainer > span {
+    padding: 0px 5px;
+  }
+
+.statsLeaderStatContainer {
+  display: flex;
+  flex-direction: column;
+  font-weight: bold;
+  margin-top: 7px;
+  text-align: center;
+}
+
+.statLeaderStatType {
+  font-size: 10px;
+  line-height: 10px;
+  margin: 15px 0px 5px;
+  text-transform: uppercase;
+}
+
+.statLeaderStat {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 44px;
+  line-height: 44px;
+  margin: 0px;
+}
+
+.statsLeadersList {
+  list-style: none;
+  margin: 0px;
+  padding-top: 25px;
+  padding-right: 5px;
+  padding-left: 5px;
+  padding-bottom: 0px;
+  width: 100%;
+}
+
+.statsLeadersListItem {
+  display: flex;
+  -moz-box-pack: justify;
+  justify-content: space-between;
+  margin-bottom: 7px;
+  font-size: 14px;
+}
+
+.statsLeadersListItem:hover {
+  font-weight: bold;
+}
+
+.statsLeadersLink {
+  color: rgb(51, 51, 51);
+  text-decoration: none;
+}
+
+.statsLeadersLink:hover {
+  color: rgb(51, 51, 51);
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.scheduleRow {
+  padding-bottom: 15px;
+}
+
+.cardScheduleGameInfoContainer {
+  display: flex;
+  flex: auto;
+  border-bottom: 1px solid rgb(210, 210, 210);
+  align-items: center;
+}
+
+.cardScheduleGameInfoContainer > div {
+  padding-left: 15px;
+  padding-right: 50px;
+}
+
+.cardScheduleGameStatus {
+  font-style: italic;
+  font-weight: bold;
+  text-align: center;
+}
+
+.cardScheduleGameStatus > span {
+  text-transform: uppercase;
+}
+
+.cardScheduleGameStatsHeader {
+  font-weight: bold;
+  font-style: italic;
+  margin-left: auto;
+}
+
+.cardScheduleGameWrapper {
+  position: relative;
+  z-index: 1;
+  display: block;
+}
+  .cardScheduleGameWrapper::before::after {
+    box-sizing: inherit;
+  }
+
+.cardScheduleGameTeamsScore {
+  margin-bottom: 5px;
+  display: flex;
+  flex-flow: row;
+  font-size: 0;
+  padding: 0;
+  align-items: center;
+}
+  .cardScheduleGameTeamsScore::before::after {
+    box-sizing: inherit;
+  }
+
+  .cardScheduleGameTeamsScore > span {
+    vertical-align: middle;
+    display: inline-block;
+    
+  }
+
+.cardScheduleGameTeamRecord {
+  margin-bottom: 5px;
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  font-size: 12px;
+  font-style: italic;
+}
+
+.cardScheduleGameTeamLogo {
+  width: 50px;
+  vertical-align: middle;
+  display: inline-block;
+  font-size: 0;
+  margin: 0;
+  padding: 0;
+}
+  .cardScheduleGameTeamLogo::before::after {
+    box-sizing: inherit;
+  }
+
+.cardScheduleGameTeamAbbr {
+  width: 24px;
+  margin-left: 8px;
+  display: inline-block;
+}
+
+.schedule-team-logo {
+  vertical-align: middle;
+  display: inline-block;
+}
+
+.fullDetails-team-logo {
+  width: 60px;
+}
+
+.team-abbr {
+  display: inline-block;
+  line-height: 1.5;
+  font-size: 14px;
+  vertical-align: middle;
+  font-weight: bold;
+  margin: 0;
+  padding: 0;
+}
+  .team-abbr::before::after {
+    box-sizing: inherit;
+  }
+
+.team-score {
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 19px;
+  width: 25px;
+  text-align: right;
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0;
+  padding: 0;
+}
+  .team-score::before::after {
+    box-sizing: inherit;
+  }
+
+.team-indicators {
+  align-items: right;
+  font-size: 12px;
+  color: red;
+  font-weight: bold;
+  font-style: italic;
+  width: 25px;
+  text-align: right;
+  padding-left: 5px;
+}
+
+.shootoutScore {
+  padding-left: 3px;
+  font-size: 11px;
+  vertical-align: super;
+}
+
+.cardScheduleGameTeamInformation {
+  text-align: right;
+  display: inline-block;
+  font-size: 14px;
+}
+
+.gameDetailsLink {
+  color: rgb(51, 51, 51);
+  text-decoration: none;
+}
+
+.gameDetailsLink:hover {
+  color: rgb(51, 51, 51);
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.statHeader {
+  font-weight: bold;
+}
+
+.refresh {
+  cursor: pointer;
+}
+  .refresh:hover {
+    color: black;
+  }
+
+.fullGameDetails {
+  background-color: rgba(0, 0, 0, 0.03);
+}
+
+.scoreGridFirstCell {
+  width: 100px;
+}
+
+.logoCell {
+  width: 75px;
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+}
+
+.rightPanelDetails {
+  padding: 25px;
+  text-align: center;
+}
+
+.rightPanelHeading {
+  padding: 5px 20px 10px 20px;
+  font-weight: bold;
+}
+
+.rightPanelGrid {
+  padding: 0px 40px;
+}
+
+.mainGameDetailsPanel {
+  padding: 25px;
+  text-align: center;
+}
+
+.selectionContainer {
+  display: flex;
+  border-bottom: 1px solid rgb(210, 210, 210);
+  padding-left: 10px;
+}
+
+.selectionItem {
+  -moz-box-align: center;
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+  font-size: 14px;
+  margin-right: 20px;
+  padding: 14px 0px;
+  text-transform: uppercase;
+}
+  .selectionItem.active {
+    border-bottom: 4px solid rgb(0, 0, 0);
+    color: rgb(37, 37, 37);
+    cursor: default;
+    font-weight: bold;
+  }
+
+.detailSelectionItem {
+  -moz-box-align: center;
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+  font-size: 14px;
+  margin-left: auto;
+  margin-right: 20px;
+  padding: 14px 0px;
+  text-transform: uppercase;
+}
+  .detailSelectionItem.active {
+    border-bottom: 4px solid rgb(0, 0, 0);
+    color: rgb(37, 37, 37);
+    cursor: default;
+    font-weight: bold;
+  }
+
+.threeStarsContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-left: 20px;
+}
+
+.threeStarsHeadshotContainer {
+  display: block;
+  position: relative;
+  width: 150px;
+}
+
+.threeStarsHeadshot {
+  border: 1px solid rgb(210, 210, 210);
+  border-radius: 50%;
+  height: 150px;
+  width: 150px;
+}
+
+.threeStarsDetailsContainer {
+  align-items: center;
+}
+
+.threeStarsStats {
+  margin-bottom: 100px;
+}
+
+.stars {
+  padding-top: 23px;
+  display: flex;
+  flex-direction: row;
+}
+
+.rdt_TableHeadRow {
+  font-weight: 700;
+}
+
+.rdt_Pagination {
+  background-color: rgba(0, 0, 0, 0.03) !important;
+}
