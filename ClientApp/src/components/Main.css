@@ -95,6 +95,7 @@ thead > tr > th:not(:first-child) {
 .filters {
   display: flex;
   flex-direction: row;
+  align-items: center;
 }
 
 .filters > *:not(:last-child) {

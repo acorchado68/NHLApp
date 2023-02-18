@@ -22,4 +22,20 @@ public class PlayerController : ControllerBase
         NhlModels.Player.Player player = await api.GetPlayerByIdAsync(id);
         return player;
     }
+
+    [HttpGet, Route("SearchAllPlayers")]
+    public async Task<List<NhlModels.Player.PlayerSearchResult>> SearchAllPlayers(string query, bool activePlayersOnly)
+    {
+        var api = new NhlPlayerApi();
+        List<NhlModels.Player.PlayerSearchResult> response;
+        if (activePlayersOnly)
+        {
+            response = await api.SearchAllActivePlayersAsync(query);
+        }
+        else
+        {
+            response = await api.SearchAllPlayersAsync(query);
+        }
+        return response;
+    }
 }

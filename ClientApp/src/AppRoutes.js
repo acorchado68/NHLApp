@@ -2,6 +2,7 @@ import { Home } from "./components/Home";
 import { Standings } from "./components/Standings/Standings";
 import { Statistics } from "./components/Statistics/Statistics";
 import { Schedule } from "./components/Schedule/Schedule";
+import { Players } from "./components/Players/Players"
 
 const AppRoutes = [
   {
@@ -20,6 +21,10 @@ const AppRoutes = [
   {
     path: '/schedule',
     element: <Schedule />
+  },
+  {
+    path: '/players',
+    element: <Players />
   },
 ];
 
