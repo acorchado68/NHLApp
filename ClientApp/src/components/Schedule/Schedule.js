@@ -42,7 +42,7 @@ export class Schedule extends Component {
     }
 
     fullDetailsScroll() {
-        const fullDetails = document.querySelector('.fullGameDetails');
+        const fullDetails = document.querySelector('.fullDetails');
         if (fullDetails !== null) {
             fullDetails.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }

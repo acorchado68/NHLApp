@@ -58,9 +58,9 @@ export class FullGameDetails extends Component {
     
     render() {
         return (
-            <div className='card mb-3 fullGameDetails'>
+            <div className='card mb-3 fullDetails'>
                 <div className='row'>
-                    <div className='col-8 mainGameDetailsPanel'>
+                    <div className='col-8 mainDetailsPanel'>
                         <div className="selectionContainer">
                             <a href="#" 
                                className={"selectionItem " + (this.getIsItemActive(false) ? 'active' : '')} 

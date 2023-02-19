@@ -42,7 +42,7 @@ export class StarPlayer extends Component {
                                     <img className="team-logo" src={this.props.starPlayerData.currentTeam.officialLightTeamLogoUrl} />
                                 </div>
                             </div>
-                            <img className="threeStarsHeadshot" src={this.props.starPlayerData.playerHeadshotImageLink} />
+                            <img className="playerHeadshot" src={this.props.starPlayerData.playerHeadshotImageLink} />
                         </div>
                         <div className="leaderDetails">
                             <a>

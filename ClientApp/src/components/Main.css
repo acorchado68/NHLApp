@@ -64,6 +64,7 @@ a {
 }
   a:hover {
     font-weight: bold;
+    color: rgb(51, 51, 51);
   }
 
 td {
@@ -473,7 +474,7 @@ thead > tr > th:not(:first-child) {
     color: black;
   }
 
-.fullGameDetails {
+.fullDetails {
   background-color: rgba(0, 0, 0, 0.03);
 }
 
@@ -502,7 +503,7 @@ thead > tr > th:not(:first-child) {
   padding: 0px 40px;
 }
 
-.mainGameDetailsPanel {
+.mainDetailsPanel {
   padding: 25px;
   text-align: center;
 }
@@ -561,7 +562,7 @@ thead > tr > th:not(:first-child) {
   width: 150px;
 }
 
-.threeStarsHeadshot {
+.playerHeadshot {
   border: 1px solid rgb(210, 210, 210);
   border-radius: 50%;
   height: 150px;
@@ -580,6 +581,27 @@ thead > tr > th:not(:first-child) {
   padding-top: 23px;
   display: flex;
   flex-direction: row;
+}
+
+.playerSearchHeadshot {
+  border: 1px solid rgb(210, 210, 210);
+  border-radius: 50%;
+}
+
+.playerSearchAnchor {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.playerSearchPlayerContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.playerFullDetailsHeadshotContainer {
+  margin: 0 auto;
 }
 
 .rdt_TableHeadRow {

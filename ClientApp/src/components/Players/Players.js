@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { FullPlayerDetails } from "./FullPlayerDetails";
 import { PlayerSearchResults } from "./PlayerSearchResults";
 
 export class Players extends Component {
@@ -10,14 +11,29 @@ export class Players extends Component {
             searchValue: '',
             searchTextInvalid: false,
             searchExecuted: false,
+            selectedPlayerId: '',
+            selectedPlayer: [],
         }
         this.handleSearchClick = this.handleSearchClick.bind(this);
+        this.loadFullPlayerData = this.loadFullPlayerData.bind(this);
+        this.fullDetailsScroll = this.fullDetailsScroll.bind(this);
         this.searchRef = React.createRef();
         this.checkedRef = React.createRef();
     }
 
     componentDidMount() {
     
+    }
+
+    loadFullPlayerData(playerId) {
+        this.setState({ selectedPlayerId: playerId }, this.fullDetailsScroll);
+    }
+
+    fullDetailsScroll() {
+        const fullDetails = document.querySelector('.fullDetails');
+        if (fullDetails !== null) {
+            fullDetails.scrollIntoView({behavior: 'smooth', block: 'start'});
+        }
     }
 
     handleSearchClick() {
@@ -64,8 +80,13 @@ export class Players extends Component {
                 <hr></hr>
                 {
                     this.state.searchExecuted && 
-                    <div>
-                        <PlayerSearchResults players={players} />
+                    <PlayerSearchResults players={players} callback={this.loadFullPlayerData} />
+                    
+                }
+                {
+                    this.state.selectedPlayerId !== '' &&
+                    <div style={{"paddingTop": "20px"}}>
+                        <FullPlayerDetails playerId={this.state.selectedPlayerId} />
                     </div>
                 }
             </div>
@@ -88,5 +109,12 @@ export class Players extends Component {
         const playerQueryResponse = await fetch('player/SearchAllPlayers?query=' + query + '&activePlayersOnly=' + activePlayersOnly);
         const playerData = await playerQueryResponse.json();
         this.setState({ players: playerData, searchTextInvalid: false, searchExecuted: true });
+    }
+
+    async getPlayerById(playerId) {
+        var param = encodeURIComponent(playerId);
+        const playerResponse = await fetch('player/GetPlayerById?id=' + param);
+        const playerData = await playerResponse.json();
+        this.setState({ selectedPlayer: playerData });
     }
 }
