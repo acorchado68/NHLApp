@@ -12,7 +12,6 @@ export class Players extends Component {
             searchTextInvalid: false,
             searchExecuted: false,
             selectedPlayerId: '',
-            selectedPlayer: [],
         }
         this.handleSearchClick = this.handleSearchClick.bind(this);
         this.loadFullPlayerData = this.loadFullPlayerData.bind(this);
@@ -26,7 +25,7 @@ export class Players extends Component {
     }
 
     loadFullPlayerData(playerId) {
-        this.setState({ selectedPlayerId: playerId }, this.fullDetailsScroll);
+        this.setState({ selectedPlayerId: playerId, searchExecuted: false }, this.fullDetailsScroll);
     }
 
     fullDetailsScroll() {
@@ -79,7 +78,7 @@ export class Players extends Component {
                 </div>
                 <hr></hr>
                 {
-                    this.state.searchExecuted && 
+                    this.state.searchExecuted &&
                     <PlayerSearchResults players={players} callback={this.loadFullPlayerData} />
                     
                 }
@@ -109,12 +108,5 @@ export class Players extends Component {
         const playerQueryResponse = await fetch('player/SearchAllPlayers?query=' + query + '&activePlayersOnly=' + activePlayersOnly);
         const playerData = await playerQueryResponse.json();
         this.setState({ players: playerData, searchTextInvalid: false, searchExecuted: true });
-    }
-
-    async getPlayerById(playerId) {
-        var param = encodeURIComponent(playerId);
-        const playerResponse = await fetch('player/GetPlayerById?id=' + param);
-        const playerData = await playerResponse.json();
-        this.setState({ selectedPlayer: playerData });
     }
 }

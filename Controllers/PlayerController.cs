@@ -60,13 +60,20 @@ public class PlayerController : ControllerBase
         if (player != null)
         {
             fullDetails.Player = player;
-        }
-
-        var api = new NhlApi();
-        NhlModels.Player.PlayerSeasonStatisticsYearByYear stats = await api.GetPlayerStatisticsYearByYearAsync(playerId);
-        if (stats != null)
-        {
-            fullDetails.PlayerStatsByYear = stats.Statistics[0].Splits;
+            var api = new NhlApi();
+            
+            if (player.IsGoalie)
+            {
+                NhlModels.Player.GoalieSeasonStatisticsYearByYear stats;
+                stats = await api.GetGoalieStatisticsYearByYearAsync(playerId);
+                fullDetails.GoalieStatsByYear =  stats.Statistics[0].Splits;
+            }
+            else
+            {
+                NhlModels.Player.PlayerSeasonStatisticsYearByYear stats;
+                stats = await api.GetPlayerStatisticsYearByYearAsync(playerId);
+                fullDetails.PlayerStatsByYear = stats.Statistics[0].Splits;
+            }
         }
 
         return fullDetails;
@@ -88,8 +95,17 @@ public class FullPlayerDetails
     [JsonProperty("player")]
     public NhlModels.Player.Player Player { get; set; }
 
+    [JsonProperty("isGoalie")]
+    public bool IsGoalie
+    {
+        get {return this.Player.IsGoalie;}
+    }
+
     [JsonProperty("playerStats")]
     public List<NhlModels.Player.PlayerSeasonStatisticsSplitYearByYear> PlayerStatsByYear { get; set; }
+
+    [JsonProperty("goalieStats")]
+    public List<NhlModels.Player.GoalieSeasonStatisticsSplitYearByYear> GoalieStatsByYear { get; set; }
 }
 
 #endregion
