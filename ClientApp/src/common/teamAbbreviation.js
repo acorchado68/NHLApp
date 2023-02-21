@@ -168,6 +168,7 @@ export default function getTeamAbbreviation(teamName) {
             abbr = "WSH";
             break;
         default:
+            abbr = teamName;
             break; 
     }
 

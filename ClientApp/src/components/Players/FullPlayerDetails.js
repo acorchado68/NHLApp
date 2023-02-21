@@ -43,7 +43,15 @@ export class FullPlayerDetails extends Component {
                                 </h2>
                                 <div id="collapseSeasonStats" className="accordion-collapse collapse show" aria-labelledby="seasonStats" data-bs-parent="#statsAccordion">
                                     <div className="accordion-body">
-                                        <PlayerStats stats={fullPlayerDetails.playerStatsByYear.slice(-1)} />
+                                        {
+                                            fullPlayerDetails.player.isGoalie ? 
+                                            (
+                                                <PlayerStats stats={fullPlayerDetails.goalieStatsByYear.slice(-1)} />
+                                            ) :
+                                            (
+                                                <PlayerStats stats={fullPlayerDetails.playerStatsByYear.slice(-1)} />
+                                            )
+                                        }
                                     </div>
                                 </div>
                             </div>
@@ -56,11 +64,19 @@ export class FullPlayerDetails extends Component {
                             </h2>
                             <div id="collapseCareerStats" className="accordion-collapse collapse" aria-labelledby="careerStats" data-bs-parent="#statsAccordion">
                                 <div className="accordion-body">
-                                    Career Stats Go Here
+                                    {
+                                        fullPlayerDetails.player.isGoalie ? 
+                                        (
+                                            <PlayerStats stats={fullPlayerDetails.goalieStatsByYear.filter(stat => stat.league.id === 133)} />
+                                        ) :
+                                        (
+                                            <PlayerStats stats={fullPlayerDetails.playerStatsByYear.filter(stat => stat.league.id === 133)} />
+                                        )
+                                    }
                                 </div>
                             </div>
                         </div>
-                        <div className="accordion-item">
+                        {/* <div className="accordion-item">
                             <h2 className="accordion-header" id="nonNhlStats">
                             <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNonNhlStats" aria-expanded="false" aria-controls="collapseNonNhlStats">
                                 Outside the NHL
@@ -68,10 +84,10 @@ export class FullPlayerDetails extends Component {
                             </h2>
                             <div id="collapseNonNhlStats" className="accordion-collapse collapse" aria-labelledby="nonNhlStats" data-bs-parent="#statsAccordion">
                                 <div className="accordion-body">
-                                    Non-NHL Stats Go Here
+                                    <PlayerStats stats={fullPlayerDetails.playerStatsByYear.filter(stat => stat.league.id !== 133)} />
                                 </div>
                             </div>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </div>
