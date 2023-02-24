@@ -85,19 +85,18 @@ export class FullGameDetails extends Component {
                             }
                         </div>
                         {
-                            this.state.loadFullStats &&
+                            this.state.loadFullStats && Object.keys(this.props.game.liveGameFeed.gameData.players).length > 0 &&
                             <div>
                                 <br></br>
                                 <TeamStatSkaterStats key={this.state.forwardKey}
-                                                     skaterType="Forward"
-                                                     skaters={this.state.loadHomeStats ? 
-                                                              this.props.game.liveGameFeed.liveData.boxscore.teams.home.players :
-                                                              this.props.game.liveGameFeed.liveData.boxscore.teams.away.players} 
+                                                    skaterType="Forward"
+                                                    skaters={this.state.loadHomeStats ? 
+                                                            this.props.game.liveGameFeed.liveData.boxscore.teams.home.players :
+                                                            this.props.game.liveGameFeed.liveData.boxscore.teams.away.players} 
                                                     ids={this.state.loadHomeStats ?
                                                         this.props.game.liveGameFeed.liveData.boxscore.teams.home.skaters :
                                                         this.props.game.liveGameFeed.liveData.boxscore.teams.away.skaters}
                                 />
-                                <br></br>
                                 <TeamStatSkaterStats key={this.state.defenseKey}
                                                      skaterType="Defenseman"
                                                      skaters={this.state.loadHomeStats ? 
