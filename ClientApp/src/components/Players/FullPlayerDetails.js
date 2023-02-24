@@ -46,10 +46,10 @@ export class FullPlayerDetails extends Component {
                                         {
                                             fullPlayerDetails.player.isGoalie ? 
                                             (
-                                                <PlayerStats stats={fullPlayerDetails.goalieStatsByYear.slice(-1)} />
+                                                <PlayerStats stats={fullPlayerDetails.goalieStatsByYear.slice(-1)} showCareerTotals={false} showPlayerTotals={false} />
                                             ) :
                                             (
-                                                <PlayerStats stats={fullPlayerDetails.playerStatsByYear.slice(-1)} />
+                                                <PlayerStats stats={fullPlayerDetails.playerStatsByYear.slice(-1)} showCareerTotals={false} showPlayerTotals={true} />
                                             )
                                         }
                                     </div>
@@ -67,27 +67,15 @@ export class FullPlayerDetails extends Component {
                                     {
                                         fullPlayerDetails.player.isGoalie ? 
                                         (
-                                            <PlayerStats stats={fullPlayerDetails.goalieStatsByYear.filter(stat => stat.league.id === 133)} />
+                                            <PlayerStats stats={fullPlayerDetails.goalieStatsByYear.filter(stat => stat.league.id === 133)} showCareerTotals={true} showPlayerTotals={false} />
                                         ) :
                                         (
-                                            <PlayerStats stats={fullPlayerDetails.playerStatsByYear.filter(stat => stat.league.id === 133)} />
+                                            <PlayerStats stats={fullPlayerDetails.playerStatsByYear.filter(stat => stat.league.id === 133)} showCareerTotals={true} showPlayerTotals={true} />
                                         )
                                     }
                                 </div>
                             </div>
                         </div>
-                        {/* <div className="accordion-item">
-                            <h2 className="accordion-header" id="nonNhlStats">
-                            <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNonNhlStats" aria-expanded="false" aria-controls="collapseNonNhlStats">
-                                Outside the NHL
-                            </button>
-                            </h2>
-                            <div id="collapseNonNhlStats" className="accordion-collapse collapse" aria-labelledby="nonNhlStats" data-bs-parent="#statsAccordion">
-                                <div className="accordion-body">
-                                    <PlayerStats stats={fullPlayerDetails.playerStatsByYear.filter(stat => stat.league.id !== 133)} />
-                                </div>
-                            </div>
-                        </div> */}
                     </div>
                 </div>
             </div>
