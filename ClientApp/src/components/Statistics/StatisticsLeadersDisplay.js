@@ -11,7 +11,6 @@ export class StatisticsLeadersDisplay extends Component {
             statTypeSelectedIndex: 0, 
             loading: true,
             statType: this.props.statHeader,
-            seasonYear: this.props.season
         };
         this.handleStatTypeClick = this.handleStatTypeClick.bind(this);
         this.handleAllLeadersClick = this.handleAllLeadersClick.bind(this);
@@ -25,8 +24,7 @@ export class StatisticsLeadersDisplay extends Component {
     componentDidUpdate(prevProps, prevState) {
         if (prevProps.season !== this.props.season) {
             this.setState({ stats: [], 
-                            loading: true, 
-                            seasonYear: this.props.season }, this.populate);
+                            loading: true }, this.populate);
         }
     }
 
@@ -159,7 +157,7 @@ export class StatisticsLeadersDisplay extends Component {
         )
     }
 
-    async populate() {
+    populate() {
         switch (this.state.statType) {
             case "Points":
                 switch (this.props.skaterType) {
@@ -204,63 +202,63 @@ export class StatisticsLeadersDisplay extends Component {
     }
 
     async getAllSkatersPoints() {
-        var year = encodeURIComponent(this.state.seasonYear);
+        var year = encodeURIComponent(this.props.season);
         const statsResponse = await fetch('statistics/GetAllSkatersPoints?seasonYear=' + year);
         const statsData = await statsResponse.json();
         this.setState({ stats: statsData, loading: false });
     }
 
     async getAllSkatersGoals() {
-        var year = encodeURIComponent(this.state.seasonYear);
+        var year = encodeURIComponent(this.props.season);
         const statsResponse = await fetch('statistics/GetAllSkatersGoals?seasonYear=' + year);
         const statsData = await statsResponse.json();
         this.setState({ stats: statsData, loading: false });
     }
 
     async getAllSkatersAssists() {
-        var year = encodeURIComponent(this.state.seasonYear);
+        var year = encodeURIComponent(this.props.season);
         const statsResponse = await fetch('statistics/GetAllSkatersAssists?seasonYear=' + year);
         const statsData = await statsResponse.json();
         this.setState({ stats: statsData, loading: false });
     }
 
     async getDefensemenPoints() {
-        var year = encodeURIComponent(this.state.seasonYear);
+        var year = encodeURIComponent(this.props.season);
         const statsResponse = await fetch('statistics/GetDefensemenPoints?seasonYear=' + year);
         const statsData = await statsResponse.json();
         this.setState({ stats: statsData, loading: false });
     }
 
     async getDefensemenGoals() {
-        var year = encodeURIComponent(this.state.seasonYear);
+        var year = encodeURIComponent(this.props.season);
         const statsResponse = await fetch('statistics/GetDefensemenGoals?seasonYear=' + year);
         const statsData = await statsResponse.json();
         this.setState({ stats: statsData, loading: false });
     }
 
     async getDefensemenAssists() {
-        var year = encodeURIComponent(this.state.seasonYear);
+        var year = encodeURIComponent(this.props.season);
         const statsResponse = await fetch('statistics/GetDefensemenAssists?seasonYear=' + year);
         const statsData = await statsResponse.json();
         this.setState({ stats: statsData, loading: false });
     }
 
     async getGoalieGaa() {
-        var year = encodeURIComponent(this.state.seasonYear);
+        var year = encodeURIComponent(this.props.season);
         const statsResponse = await fetch('statistics/GetGoalieGaa?seasonYear=' + year);
         const statsData = await statsResponse.json();
         this.setState({ stats: statsData, loading: false });
     }
 
     async getGoalieSavePercentage() {
-        var year = encodeURIComponent(this.state.seasonYear);
+        var year = encodeURIComponent(this.props.season);
         const statsResponse = await fetch('statistics/GetGoalieSavePercentage?seasonYear=' + year);
         const statsData = await statsResponse.json();
         this.setState({ stats: statsData, loading: false });
     }
 
     async getGoalieShutouts() {
-        var year = encodeURIComponent(this.state.seasonYear);
+        var year = encodeURIComponent(this.props.season);
         const statsResponse = await fetch('statistics/GetGoalieShutouts?seasonYear=' + year);
         const statsData = await statsResponse.json();
         this.setState({ stats: statsData, loading: false });

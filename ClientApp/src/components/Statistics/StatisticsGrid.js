@@ -7,7 +7,7 @@ import DataTableBase from "../common/DataTableBase.js";
 export class StatisticsGrid extends Component {
     constructor(props) {
         super(props);
-        this.state = { loading: true, stats: [], filteredStats: [], seasonYear: this.props.seasonYear, defaultSortFieldId: 0, areStatsFiltered: false };
+        this.state = { loading: true, stats: [], filteredStats: [], defaultSortFieldId: 0, areStatsFiltered: false };
         this.getSkaterColumnHeaders = this.getSkaterColumnHeaders.bind(this);
         this.getSkaterStatisticsData = this.getSkaterStatisticsData.bind(this);
         this.getGoalieColumnHeaders = this.getGoalieColumnHeaders.bind(this);
@@ -111,8 +111,8 @@ export class StatisticsGrid extends Component {
             { name: "A", selector: row => row.assists, sortable: true, right: true, width: "50px" },
             { name: "P", selector: row => row.points, sortable: true, right: true, width: "50px" },
             { name: "+/-", selector: row => row.plusMinus, sortable: true, right: true, width: "55px" },
-            { name: "SH", selector: row => row.shots, sortable: true, right: true, width: "55px" },
-            { name: "SH%", selector: row => row.shotPercentage, sortable: true, right: true, width: "70px" },
+            { name: "S", selector: row => row.shots, sortable: true, right: true, width: "55px" },
+            { name: "S%", selector: row => row.shotPercentage, sortable: true, right: true, width: "70px" },
             { name: "GWG", selector: row => row.gameWinningGoals, sortable: true, right: true, width: "65px" },
             { name: "PIMs", selector: row => row.pim, sortable: true, right: true, width: "65px" },
             { name: "BLKS", selector: row => row.blocked, sortable: true, right: true, width: "65px" },
@@ -205,7 +205,7 @@ export class StatisticsGrid extends Component {
         )
     }
 
-    async getFullStatistics() {
+    getFullStatistics() {
         switch (this.props.statType) {
             case "Points":
                 switch (this.props.skaterType) {
@@ -250,63 +250,63 @@ export class StatisticsGrid extends Component {
     }
 
     async getAllSkatersPoints() {
-        var year = encodeURIComponent(this.state.seasonYear);
+        var year = encodeURIComponent(this.props.seasonYear);
         const statsResponse = await fetch('statistics/GetAllSkatersPoints?seasonYear=' + year + '&numberOfPlayers=' + 300);
         const statsData = await statsResponse.json();
         this.setState({ stats: statsData, defaultSortFieldId: 7, loading: false });
     }
 
     async getAllSkatersGoals() {
-        var year = encodeURIComponent(this.state.seasonYear);
+        var year = encodeURIComponent(this.props.seasonYear);
         const statsResponse = await fetch('statistics/GetAllSkatersGoals?seasonYear=' + year + '&numberOfPlayers=' + 300);
         const statsData = await statsResponse.json();
         this.setState({ stats: statsData, defaultSortFieldId: 5, loading: false });
     }
 
     async getAllSkatersAssists() {
-        var year = encodeURIComponent(this.state.seasonYear);
+        var year = encodeURIComponent(this.props.seasonYear);
         const statsResponse = await fetch('statistics/GetAllSkatersAssists?seasonYear=' + year + '&numberOfPlayers=' + 300);
         const statsData = await statsResponse.json();
         this.setState({ stats: statsData, defaultSortFieldId: 6, loading: false });
     }
 
     async getDefensemenPoints() {
-        var year = encodeURIComponent(this.state.seasonYear);
+        var year = encodeURIComponent(this.props.seasonYear);
         const statsResponse = await fetch('statistics/GetDefensemenPoints?seasonYear=' + year + '&numberOfPlayers=' + 100);
         const statsData = await statsResponse.json();
         this.setState({ stats: statsData, defaultSortFieldId: 7, loading: false });
     }
 
     async getDefensemenGoals() {
-        var year = encodeURIComponent(this.state.seasonYear);
+        var year = encodeURIComponent(this.props.seasonYear);
         const statsResponse = await fetch('statistics/GetDefensemenGoals?seasonYear=' + year + '&numberOfPlayers=' + 100);
         const statsData = await statsResponse.json();
         this.setState({ stats: statsData, defaultSortFieldId: 5, loading: false });
     }
 
     async getDefensemenAssists() {
-        var year = encodeURIComponent(this.state.seasonYear);
+        var year = encodeURIComponent(this.props.seasonYear);
         const statsResponse = await fetch('statistics/GetDefensemenAssists?seasonYear=' + year + '&numberOfPlayers=' + 100);
         const statsData = await statsResponse.json();
         this.setState({ stats: statsData, defaultSortFieldId: 6, loading: false });
     }
 
     async getGoalieGaa() {
-        var year = encodeURIComponent(this.state.seasonYear);
+        var year = encodeURIComponent(this.props.seasonYear);
         const statsResponse = await fetch('statistics/GetGoalieGaa?seasonYear=' + year + '&numberOfPlayers=' + 100);
         const statsData = await statsResponse.json();
         this.setState({ stats: statsData, defaultSortFieldId: 11, loading: false });
     }
 
     async getGoalieSavePercentage() {
-        var year = encodeURIComponent(this.state.seasonYear);
+        var year = encodeURIComponent(this.props.seasonYear);
         const statsResponse = await fetch('statistics/GetGoalieSavePercentage?seasonYear=' + year + '&numberOfPlayers=' + 100);
         const statsData = await statsResponse.json();
         this.setState({ stats: statsData, defaultSortFieldId: 13, loading: false });
     }
 
     async getGoalieShutouts() {
-        var year = encodeURIComponent(this.state.seasonYear);
+        var year = encodeURIComponent(this.props.seasonYear);
         const statsResponse = await fetch('statistics/GetGoalieShutouts?seasonYear=' + year + '&numberOfPlayers=' + 100);
         const statsData = await statsResponse.json();
         this.setState({ stats: statsData, defaultSortFieldId: 12, loading: false });

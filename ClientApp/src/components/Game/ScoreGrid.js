@@ -4,15 +4,15 @@ import '../Main.css';
 export class ScoreGrid extends Component {
     constructor(props) {
         super(props);
-        this.state = { liveGameFeed: this.props.liveGameFeed, homeTeam: this.props.homeTeam, awayTeam: this.props.awayTeam };
+        this.state = { };
         this.getTimeRemaining = this.getTimeRemaining.bind(this);
     }
 
     getPeriodGoals(index, isHome) {
         let goals = ''
-        const period = this.state.liveGameFeed.liveData.linescore.periods[index];
+        const period = this.props.liveGameFeed.liveData.linescore.periods[index];
         if (period !== undefined && period !== null) {
-            goals = isHome ? this.state.liveGameFeed.liveData.linescore.periods[index].home.goals : this.state.liveGameFeed.liveData.linescore.periods[index].away.goals;
+            goals = isHome ? this.props.liveGameFeed.liveData.linescore.periods[index].home.goals : this.props.liveGameFeed.liveData.linescore.periods[index].away.goals;
         }
         else {
             goals = '0';
@@ -53,21 +53,21 @@ export class ScoreGrid extends Component {
                 <thead>
                     <tr>
                         <th scope="col" className="">
-                            {this.getTimeRemaining(this.state.liveGameFeed.gameData, 
-                                                    this.state.liveGameFeed.liveData.linescore.currentPeriodTimeRemaining, 
-                                                    this.state.liveGameFeed.liveData.linescore.currentPeriodOrdinal,
-                                                    this.state.liveGameFeed.liveData.linescore.intermissionInfo)}
+                            {this.getTimeRemaining(this.props.liveGameFeed.gameData, 
+                                                    this.props.liveGameFeed.liveData.linescore.currentPeriodTimeRemaining, 
+                                                    this.props.liveGameFeed.liveData.linescore.currentPeriodOrdinal,
+                                                    this.props.liveGameFeed.liveData.linescore.intermissionInfo)}
                         </th>
                         <th scope="col" className="text-muted">1ST</th>
                         <th scope="col" className="text-muted">2ND</th>
                         <th scope="col" className="text-muted">3RD</th>
                         {
-                            (this.state.liveGameFeed.liveData.linescore.currentPeriodOrdinal === "OT" ||
-                             this.state.liveGameFeed.liveData.linescore.hasShootout) &&
+                            (this.props.liveGameFeed.liveData.linescore.currentPeriodOrdinal === "OT" ||
+                             this.props.liveGameFeed.liveData.linescore.hasShootout) &&
                             <th scope="col" className="text-muted">OT</th>
                         }
                         {
-                            this.state.liveGameFeed.liveData.linescore.currentPeriodOrdinal === "SO" &&
+                            this.props.liveGameFeed.liveData.linescore.currentPeriodOrdinal === "SO" &&
                             <th scope="col" className="text-muted">SO</th>
                         }
                         <th scope="col" className="text-muted">T</th>
@@ -77,16 +77,16 @@ export class ScoreGrid extends Component {
                     <tr>
                         <td className='scoreGridFirstCell' scope="row">
                             <div className='logoCell'>
-                                <img className="fullDetails-team-logo" src={this.state.awayTeam.splits[0].team.officialLightTeamLogoUrl}></img>
+                                <img className="fullDetails-team-logo" src={this.props.awayTeam.splits[0].team.officialLightTeamLogoUrl}></img>
                                 <div className="team-indicators">
                                     {
-                                        (!this.state.liveGameFeed.gameData.isGameCompleted &&
-                                          this.state.liveGameFeed.liveData.linescore.teams.away.goaliePulled) &&
+                                        (!this.props.liveGameFeed.gameData.isGameCompleted &&
+                                          this.props.liveGameFeed.liveData.linescore.teams.away.goaliePulled) &&
                                         <span>EN</span>
                                     }
                                     {
-                                        (!this.state.liveGameFeed.gameData.isGameCompleted &&
-                                          this.state.liveGameFeed.liveData.linescore.teams.away.powerPlay) &&
+                                        (!this.props.liveGameFeed.gameData.isGameCompleted &&
+                                          this.props.liveGameFeed.liveData.linescore.teams.away.powerPlay) &&
                                         <span>PP</span>
                                     }
                                 </div>
@@ -96,36 +96,36 @@ export class ScoreGrid extends Component {
                         <td>{this.getPeriodGoals(1, false)}</td>
                         <td>{this.getPeriodGoals(2, false)}</td>
                         {
-                            (this.state.liveGameFeed.liveData.linescore.currentPeriodOrdinal === "OT" ||
-                             this.state.liveGameFeed.liveData.linescore.hasShootout) &&
+                            (this.props.liveGameFeed.liveData.linescore.currentPeriodOrdinal === "OT" ||
+                             this.props.liveGameFeed.liveData.linescore.hasShootout) &&
                             <td>{this.getPeriodGoals(3, false)}</td>
                         }
                         {
-                            this.state.liveGameFeed.liveData.linescore.currentPeriodOrdinal === "SO" &&
+                            this.props.liveGameFeed.liveData.linescore.currentPeriodOrdinal === "SO" &&
                             <td>
-                                {this.state.liveGameFeed.liveData.linescore.shootoutInfo.away.scores > 
-                                 this.state.liveGameFeed.liveData.linescore.shootoutInfo.home.scores ? "1" : "0"}
+                                {this.props.liveGameFeed.liveData.linescore.shootoutInfo.away.scores > 
+                                 this.props.liveGameFeed.liveData.linescore.shootoutInfo.home.scores ? "1" : "0"}
                                 <span className='shootoutScore'>
-                                      ({this.state.liveGameFeed.liveData.linescore.shootoutInfo.away.scores}/
-                                       {this.state.liveGameFeed.liveData.linescore.shootoutInfo.away.attempts})
+                                      ({this.props.liveGameFeed.liveData.linescore.shootoutInfo.away.scores}/
+                                       {this.props.liveGameFeed.liveData.linescore.shootoutInfo.away.attempts})
                                 </span>
                             </td>
                         }
-                        <td className="active">{this.state.liveGameFeed.liveData.linescore.teams.away.goals}</td>
+                        <td className="active">{this.props.liveGameFeed.liveData.linescore.teams.away.goals}</td>
                     </tr>
                     <tr>
                         <td className="scoreGridFirstCell" scope="row">
                             <div className='logoCell'>
-                                <img className="fullDetails-team-logo" src={this.state.homeTeam.splits[0].team.officialLightTeamLogoUrl}></img>
+                                <img className="fullDetails-team-logo" src={this.props.homeTeam.splits[0].team.officialLightTeamLogoUrl}></img>
                                 <div className="team-indicators">
                                     {
-                                        (!this.state.liveGameFeed.gameData.isGameCompleted &&
-                                          this.state.liveGameFeed.liveData.linescore.teams.home.goaliePulled) &&
+                                        (!this.props.liveGameFeed.gameData.isGameCompleted &&
+                                          this.props.liveGameFeed.liveData.linescore.teams.home.goaliePulled) &&
                                         <span>EN</span>
                                     }
                                     {
-                                        (!this.state.liveGameFeed.gameData.isGameCompleted &&
-                                          this.state.liveGameFeed.liveData.linescore.teams.home.powerPlay) &&
+                                        (!this.props.liveGameFeed.gameData.isGameCompleted &&
+                                          this.props.liveGameFeed.liveData.linescore.teams.home.powerPlay) &&
                                         <span>PP</span>
                                     }
                                 </div>
@@ -135,22 +135,22 @@ export class ScoreGrid extends Component {
                         <td>{this.getPeriodGoals(1, true)}</td>
                         <td>{this.getPeriodGoals(2, true)}</td>
                         {
-                            (this.state.liveGameFeed.liveData.linescore.currentPeriodOrdinal === "OT" ||
-                            this.state.liveGameFeed.liveData.linescore.hasShootout) &&
+                            (this.props.liveGameFeed.liveData.linescore.currentPeriodOrdinal === "OT" ||
+                            this.props.liveGameFeed.liveData.linescore.hasShootout) &&
                             <td>{this.getPeriodGoals(3, true)}</td>
                         }
                         {
-                            this.state.liveGameFeed.liveData.linescore.currentPeriodOrdinal === "SO" &&
+                            this.props.liveGameFeed.liveData.linescore.currentPeriodOrdinal === "SO" &&
                             <td>
-                                {this.state.liveGameFeed.liveData.linescore.shootoutInfo.home.scores > 
-                                 this.state.liveGameFeed.liveData.linescore.shootoutInfo.away.scores ? "1" : "0"}
+                                {this.props.liveGameFeed.liveData.linescore.shootoutInfo.home.scores > 
+                                 this.props.liveGameFeed.liveData.linescore.shootoutInfo.away.scores ? "1" : "0"}
                                 <span className='shootoutScore'>
-                                      ({this.state.liveGameFeed.liveData.linescore.shootoutInfo.home.scores}/
-                                       {this.state.liveGameFeed.liveData.linescore.shootoutInfo.home.attempts})
+                                      ({this.props.liveGameFeed.liveData.linescore.shootoutInfo.home.scores}/
+                                       {this.props.liveGameFeed.liveData.linescore.shootoutInfo.home.attempts})
                                 </span>
                             </td>
                         }
-                        <td className="active">{this.state.liveGameFeed.liveData.linescore.teams.home.goals}</td>
+                        <td className="active">{this.props.liveGameFeed.liveData.linescore.teams.home.goals}</td>
                     </tr>
                 </tbody>
             </table>

@@ -7,8 +7,7 @@ export class Statistics extends Component {
     static displayName = Statistics.name;
     constructor(props) {
         super(props);
-        this.state = { skaterType: '', fullStatType: '', seasonPickerValue: '20222023', random: 0, };
-        this.seasonPickerChanged = this.seasonPickerChanged.bind(this);
+        this.state = { skaterType: '', fullStatType: '', random: 0, };
         this.allLeadersCallback = this.allLeadersCallback.bind(this);
     }
 
@@ -16,11 +15,7 @@ export class Statistics extends Component {
         
     }
 
-    seasonPickerChanged(date, value) {
-        this.setState({ seasonPickerValue: value });
-    }
-
-    allLeadersCallback(skaterType, statType, sortId) {
+    allLeadersCallback(skaterType, statType) {
         this.setState({ skaterType: skaterType,
                         fullStatType: statType,
                         random: Math.random() }, this.renderStatistics)
@@ -35,25 +30,25 @@ export class Statistics extends Component {
                             <StatisticsLeadersDisplay callback={this.allLeadersCallback} 
                                                       statHeader="Points" 
                                                       skaterType="all" 
-                                                      season={this.state.seasonPickerValue} />
+                                                      season='20222023' />
                         </div>
                         <div className='col statsWrapper'>
                             <StatisticsLeadersDisplay callback={this.allLeadersCallback} 
                                                       statHeader="Points" 
                                                       skaterType="defensemen" 
-                                                      season={this.state.seasonPickerValue} />
+                                                      season='20222023' />
                         </div>
                         <div className='col statsWrapper'>
                             <StatisticsLeadersDisplay callback={this.allLeadersCallback} 
                                                       statHeader="GAA" 
                                                       skaterType="goalie" 
-                                                      season={this.state.seasonPickerValue} 
+                                                      season='20222023' 
                             />
                         </div>
                     </div>
                     {this.state.skaterType !== '' && this.state.statType !== '' && 
                         <StatisticsGrid key={this.state.random} 
-                                        seasonYear={this.state.seasonPickerValue} 
+                                        seasonYear='20222023'  
                                         skaterType={this.state.skaterType} 
                                         statType={this.state.fullStatType} 
                         />
