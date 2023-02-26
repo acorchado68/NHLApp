@@ -11,7 +11,8 @@ const context = [
   "/statistics",
   "/seasons",
   "/schedule",
-  "/player"
+  "/player",
+  "/team",
 ];
 
 const onError = (err, req, resp, target) => {

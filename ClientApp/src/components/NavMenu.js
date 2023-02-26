@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { Collapse, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink } from 'reactstrap';
+import { Collapse, Dropdown, DropdownItem, DropdownMenu, DropdownToggle, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink, UncontrolledDropdown } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import './NavMenu.css';
+import { TeamDropdown } from './common/TeamDropdown';
 
 export class NavMenu extends Component {
   static displayName = NavMenu.name;
@@ -10,8 +11,10 @@ export class NavMenu extends Component {
     super(props);
 
     this.toggleNavbar = this.toggleNavbar.bind(this);
+    this.getTeams = this.getTeams.bind(this);
     this.state = {
-      collapsed: true
+      collapsed: true,
+      teams: [],
     };
   }
 
@@ -19,6 +22,12 @@ export class NavMenu extends Component {
     this.setState({
       collapsed: !this.state.collapsed
     });
+  }
+
+  async getTeams() {
+    const response = await fetch("teams/GetActiveTeams");
+    const data = await response.json();
+    this.setState({})
   }
 
   render() {
@@ -40,6 +49,7 @@ export class NavMenu extends Component {
               <NavItem>
                 <NavLink tag={Link} className="text-dark" to="/players">Players</NavLink>
               </NavItem>
+              <TeamDropdown />
             </ul>
           </Collapse>
         </Navbar>
