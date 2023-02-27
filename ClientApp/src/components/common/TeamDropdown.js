@@ -1,5 +1,6 @@
 import { Component } from "react";
 import { UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from "reactstrap";
+import { Link } from 'react-router-dom';
 
 export class TeamDropdown extends Component {
     constructor(props) {
@@ -25,7 +26,7 @@ export class TeamDropdown extends Component {
                                 {
                                     this.state.metroTeams.map(function(team, index) {
                                         return (
-                                            <DropdownItem key={team.id}>
+                                            <DropdownItem tag={Link} to={"/team/:id"} key={team.id}>
                                                 <img height={20} src={team.officialLightTeamLogoUrl}></img>{team.name}
                                             </DropdownItem>
                                         )

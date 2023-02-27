@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Collapse, Dropdown, DropdownItem, DropdownMenu, DropdownToggle, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink, UncontrolledDropdown } from 'reactstrap';
+import { Collapse, Navbar, NavbarToggler, NavItem, NavLink } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import './NavMenu.css';
 import { TeamDropdown } from './common/TeamDropdown';
@@ -11,10 +11,8 @@ export class NavMenu extends Component {
     super(props);
 
     this.toggleNavbar = this.toggleNavbar.bind(this);
-    this.getTeams = this.getTeams.bind(this);
     this.state = {
       collapsed: true,
-      teams: [],
     };
   }
 
@@ -22,12 +20,6 @@ export class NavMenu extends Component {
     this.setState({
       collapsed: !this.state.collapsed
     });
-  }
-
-  async getTeams() {
-    const response = await fetch("teams/GetActiveTeams");
-    const data = await response.json();
-    this.setState({})
   }
 
   render() {
