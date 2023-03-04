@@ -59,14 +59,14 @@ export class PlayerInformation extends Component {
                     </div>
                     <div className="col-1"></div>
                     <div className="col-5">
-                        <div className="playerFullDetailsCenterAlignment">
+                        <div className="fullDetailsCenterAlignment">
                             <img src={this.props.player.playerHeadshotImageLink} className="playerHeadshot" onError={(e) => this.getDefaultSrc(e)} />
                         </div>
-                        <div className="playerFullDetailsCenterAlignment playerFullDetailsPlayerInfo" style={{"paddingTop": "10px"}}>
+                        <div className="fullDetailsCenterAlignment playerFullDetailsPlayerInfo" style={{"paddingTop": "10px"}}>
                             <span>{this.props.player.fullName}&nbsp;|&nbsp;#{this.props.player.primaryNumber}</span>
                             <span></span>
                         </div>
-                        <div className="playerFullDetailsCenterAlignment playerFullDetailsPlayerInfo" style={{"paddingTop": "5px"}}>
+                        <div className="fullDetailsCenterAlignment playerFullDetailsPlayerInfo" style={{"paddingTop": "5px"}}>
                             <span>
                                 {this.props.player.primaryPosition.code}&nbsp;|&nbsp;
                                 {this.props.player.height}&nbsp;|&nbsp;

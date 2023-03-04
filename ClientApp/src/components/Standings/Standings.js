@@ -89,11 +89,11 @@ export class Standings extends Component {
                             )
                         })}
                     </div>
-                    <button className='carousel-control-prev carouselButtonLeft' type="button" data-bs-target="#carousel" data-bs-slide="prev">
+                    <button className='carousel-control-prev' style={{"marginLeft": "-150px"}} type="button" data-bs-target="#carousel" data-bs-slide="prev">
                         <span className='carousel-control-prev-icon' aria-hidden="true"></span>
                         <span className='visually-hidden'>Previous</span>
                     </button>
-                    <button className='carousel-control-next carouselButtonRight' type="button" data-bs-target="#carousel" data-bs-slide="next">
+                    <button className='carousel-control-next' style={{"marginRight": "-150px"}} type="button" data-bs-target="#carousel" data-bs-slide="next">
                         <span className='carousel-control-next-icon' aria-hidden="true"></span>
                         <span className='visually-hidden'>Next</span>
                     </button>

@@ -26,7 +26,7 @@ export class TeamDropdown extends Component {
                                 {
                                     this.state.metroTeams.map(function(team, index) {
                                         return (
-                                            <DropdownItem tag={Link} to={"/team/:id"} key={team.id}>
+                                            <DropdownItem tag={Link} to={"/team/" + team.id} key={team.id}>
                                                 <img height={20} src={team.officialLightTeamLogoUrl}></img>{team.name}
                                             </DropdownItem>
                                         )
@@ -38,7 +38,7 @@ export class TeamDropdown extends Component {
                                 {
                                     this.state.atlanticTeams.map(function(team, index) {
                                         return (
-                                            <DropdownItem key={team.id}>
+                                            <DropdownItem tag={Link} to={"/team/" + team.id} key={team.id}>
                                                 <img height={20} src={team.officialLightTeamLogoUrl}></img>{team.name}
                                             </DropdownItem>
                                         )
@@ -50,7 +50,7 @@ export class TeamDropdown extends Component {
                                 {
                                     this.state.centralTeams.map(function(team, index) {
                                         return (
-                                            <DropdownItem key={team.id}>
+                                            <DropdownItem tag={Link} to={"/team/" + team.id} key={team.id}>
                                                 <img height={20} src={team.officialLightTeamLogoUrl}></img>{team.name}
                                             </DropdownItem>
                                         )
@@ -62,7 +62,7 @@ export class TeamDropdown extends Component {
                                 {
                                     this.state.pacificTeams.map(function(team, index) {
                                         return (
-                                            <DropdownItem key={team.id}>
+                                            <DropdownItem tag={Link} to={"/team/" + team.id} key={team.id}>
                                                 <img height={20} src={team.officialLightTeamLogoUrl}></img>{team.name}
                                             </DropdownItem>
                                         )

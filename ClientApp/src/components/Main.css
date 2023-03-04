@@ -19,6 +19,10 @@ i {
   -webkit-text-stroke: 1px;
 }
 
+.hidden {
+  display: none;
+}
+
 .flex-sm-col-reverse {
   flex-direction: column !important;
 }
@@ -34,14 +38,6 @@ i {
  
  .carousel-control-next-icon {
    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23000' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E") !important;
- }
-
- .carouselButtonLeft {
-  margin-left: -150px;
- }
-
- .carouselButtonRight {
-  margin-right: -150px;
  }
 
  .carousel-indicators {
@@ -83,10 +79,6 @@ thead > tr > th:not(:first-child) {
 .footer > .container {
   margin: auto;
   float: left;
-}
-
-.active {
-  font-weight: bold;
 }
 
 .standingsPosition {
@@ -171,7 +163,7 @@ thead > tr > th:not(:first-child) {
   flex: 1 1 0%;
 }
 
-.statsLeaderHeadshotContainer {
+.image-with-floating-item-container {
   display: block;
   position: relative;
 }
@@ -604,7 +596,7 @@ thead > tr > th:not(:first-child) {
   align-items: center;
 }
 
-.playerFullDetailsCenterAlignment {
+.fullDetailsCenterAlignment {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -614,6 +606,14 @@ thead > tr > th:not(:first-child) {
   font-weight: bold;
   font-size: large;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.teamYearEst {
+  display: flex;
+  position: absolute;
+  bottom: 0px;
+  right: -5px;
+  font-size: small;
 }
 
 .rdt_TableHeadRow {

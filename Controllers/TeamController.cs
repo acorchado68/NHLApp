@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using Nhl.Api;
 using NhlModels = Nhl.Api.Models;
 namespace Hockey.Client.Controllers;
@@ -22,4 +23,54 @@ public class TeamController : ControllerBase
         teams = teams.OrderBy(team => team.Name).ToList();
         return teams;
     }
+
+    [HttpGet, Route("GetTeamById")]
+    public async Task<CustomTeam> GetTeamById(int id)
+    {
+        var api = new NhlApi();
+        NhlModels.Team.Team team = await api.GetTeamByIdAsync(id);
+        NhlModels.Season.Season season = await api.GetCurrentSeasonAsync();
+        NhlModels.Game.GameSchedule schedule = await api.GetGameScheduleForTeamByDateAsync(id, 
+                                                season.RegularSeasonStartDate, season.RegularSeasonEndDate, 
+                                                new NhlModels.Game.GameScheduleConfiguration { IncludeLinescore = true });
+        NhlModels.Game.GameSchedule trimmedSchedule = GetTrimmedSchedule(schedule);
+        NhlModels.Statistics.TeamStatistics stats = await api.GetTeamStatisticsByIdAsync(id, season.SeasonId);
+
+        CustomTeam customTeam = new CustomTeam
+        {
+            TeamInformation = team,
+            TeamGameSchedule = trimmedSchedule,
+            TeamStatisticsDetails = stats,
+        };
+        return customTeam;
+    }
+
+    public NhlModels.Game.GameSchedule GetTrimmedSchedule(NhlModels.Game.GameSchedule fullSchedule)
+    {
+        NhlModels.Game.GameSchedule trimmedSchedule = new NhlModels.Game.GameSchedule();
+        List<NhlModels.Game.GameDate> pastGames = new List<NhlModels.Game.GameDate>();
+        List<NhlModels.Game.GameDate> futureGames = new List<NhlModels.Game.GameDate>();
+        futureGames = fullSchedule.Dates.Where(d => d.Date >= DateTime.Now.Date).ToList();
+        pastGames = fullSchedule.Dates.Where(d => d.Date < DateTime.Now.Date).OrderByDescending(d => d.Date).ToList();
+        trimmedSchedule.Dates = pastGames.Take(3).ToList();
+        trimmedSchedule.Dates.AddRange(futureGames.Take(5).ToList());
+        trimmedSchedule.Dates = trimmedSchedule.Dates.OrderBy(d => d.Date).ToList();
+        return trimmedSchedule;
+    }
 }
+
+#region Helper Classes
+
+public class CustomTeam
+{
+    [JsonProperty("teamInformation")]
+    public NhlModels.Team.Team TeamInformation { get; set; }
+
+    [JsonProperty("teamGameSchedule")]
+    public NhlModels.Game.GameSchedule TeamGameSchedule { get; set; }
+
+    [JsonProperty("teamStatisticsDetails")]
+    public NhlModels.Statistics.TeamStatistics TeamStatisticsDetails { get; set; }
+}
+
+#endregion

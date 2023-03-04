@@ -68,7 +68,7 @@ export class StatisticsLeaderInformation extends Component {
         return (
             <div className="statsLeaderContent">
                 {/* add links to player page */}
-                <a className="statsLeaderHeadshotContainer">
+                <a className="image-with-floating-item-container">
                     <div className="team-display-container">
                         <div className="team-display">
                             <img className="team-logo" src={this.getCurrentTeamLogo()}></img>

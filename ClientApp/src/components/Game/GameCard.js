@@ -24,11 +24,13 @@ export class GameCard extends Component {
         this.props.refreshCallback(this.state.game, this.state.homeTeam, this.state.awayTeam);
     }
 
-    getTimeRemaining(gameData, periodTimeRemaining, period, intermissionInfo) {
+    getTimeRemaining(showGameDate, gameData, periodTimeRemaining, period, intermissionInfo) {
         let remaining = '';
+        var localDate = new Date(gameData.datetime.dateTime);
         if (period === null || gameData.status.detailedState === "Scheduled") {
-            var localDate = new Date(gameData.datetime.dateTime);
-            remaining = localDate.toLocaleTimeString([], {hour: 'numeric', minute: '2-digit'});
+            remaining = showGameDate ? 
+                        localDate.toLocaleDateString() + ' @ ' + localDate.toLocaleTimeString([], {hour: 'numeric', minute: '2-digit'}): 
+                        localDate.toLocaleTimeString([], {hour: 'numeric', minute: '2-digit'});
         }
         else if (gameData.isGameCompleted) {
             if (period === "OT") {
@@ -39,6 +41,10 @@ export class GameCard extends Component {
             }
             else {
                 remaining = "Final";
+            }
+            
+            if (showGameDate) {
+                remaining = localDate.toLocaleDateString() + ' - ' + remaining;
             }
         }
         else if (intermissionInfo.inIntermission) {
@@ -82,7 +88,8 @@ export class GameCard extends Component {
                 </div>
                 <div className='cardScheduleGameInfoContainer'>
                     <div className='cardScheduleGameStatus'>
-                        <span>{this.getTimeRemaining(this.state.game.liveGameFeed.gameData, 
+                        <span>{this.getTimeRemaining(this.props.showGameDate,
+                                                     this.state.game.liveGameFeed.gameData, 
                                                      this.state.game.liveGameFeed.liveData.linescore.currentPeriodTimeRemaining, 
                                                      this.state.game.liveGameFeed.liveData.linescore.currentPeriodOrdinal,
                                                      this.state.game.liveGameFeed.liveData.linescore.intermissionInfo)}
