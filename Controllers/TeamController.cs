@@ -9,6 +9,7 @@ namespace Hockey.Client.Controllers;
 public class TeamController : ControllerBase
 {
     private readonly ILogger<TeamController> _logger;
+    private HttpClient _client;
 
     public TeamController(ILogger<TeamController> logger)
     {
@@ -35,14 +36,44 @@ public class TeamController : ControllerBase
                                                 new NhlModels.Game.GameScheduleConfiguration { IncludeLinescore = true });
         NhlModels.Game.GameSchedule trimmedSchedule = GetTrimmedSchedule(schedule);
         NhlModels.Statistics.TeamStatistics stats = await api.GetTeamStatisticsByIdAsync(id, season.SeasonId);
+        NhlModels.Team.TeamRoster roster = await GetTeamRosterById(id);
+        List<NhlModels.Player.Player> players = new List<NhlModels.Player.Player>();
+        PlayerController controller = new PlayerController();
+        foreach (NhlModels.Team.TeamRosterMember rosterMember in roster.Roster)
+        {
+            NhlModels.Player.Player player = await controller.GetPlayerById(rosterMember.Person.Id);
+            if (player != null)
+            {
+                players.Add(player);
+            }
+        }
 
         CustomTeam customTeam = new CustomTeam
         {
+            Season = season.SeasonId,
             TeamInformation = team,
             TeamGameSchedule = trimmedSchedule,
             TeamStatisticsDetails = stats,
+            TeamRoster = players,
         };
         return customTeam;
+    }
+
+    public async Task<NhlModels.Team.TeamRoster> GetTeamRosterById(int id)
+    {
+        NhlModels.Team.TeamRoster roster = new NhlModels.Team.TeamRoster();
+        _client = new HttpClient();
+        _client.BaseAddress = new Uri("https://statsapi.web.nhl.com/api/v1/");
+        using (HttpResponseMessage _message = await _client.GetAsync($"teams/{id}/roster"))
+        {
+            var contentResponse = await _message.Content.ReadAsStringAsync();
+            if (!string.IsNullOrWhiteSpace(contentResponse))
+            {
+                roster = JsonConvert.DeserializeObject<NhlModels.Team.TeamRoster>(contentResponse);
+            }
+        }
+
+        return roster;
     }
 
     public NhlModels.Game.GameSchedule GetTrimmedSchedule(NhlModels.Game.GameSchedule fullSchedule)
@@ -63,6 +94,9 @@ public class TeamController : ControllerBase
 
 public class CustomTeam
 {
+    [JsonProperty("season")]
+    public string Season { get; set; }
+
     [JsonProperty("teamInformation")]
     public NhlModels.Team.Team TeamInformation { get; set; }
 
@@ -71,6 +105,9 @@ public class CustomTeam
 
     [JsonProperty("teamStatisticsDetails")]
     public NhlModels.Statistics.TeamStatistics TeamStatisticsDetails { get; set; }
+
+    [JsonProperty("teamRoster")]
+    public List<NhlModels.Player.Player> TeamRoster { get; set; }
 }
 
 #endregion

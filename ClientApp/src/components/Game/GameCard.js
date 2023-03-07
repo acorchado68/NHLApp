@@ -226,9 +226,12 @@ export class GameCard extends Component {
                           this.state.homeTeam.splits[0].teamStatisticsDetails.ot}
                     </div>
                 </div>
-                <div className='card-footer text-muted'>
-                    <a className="gameDetailsLink" onClick={(e) => this.handleGameDetailsClick(e)} href="#">Full Stats</a>
-                </div>
+                {
+                    this.props.showFullStats &&
+                    <div className='card-footer text-muted'>
+                        <a className="gameDetailsLink" onClick={(e) => this.handleGameDetailsClick(e)} href="#">Full Stats</a>
+                    </div>
+                }
             </div>
         )
     }

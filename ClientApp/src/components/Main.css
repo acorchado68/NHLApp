@@ -608,16 +608,13 @@ thead > tr > th:not(:first-child) {
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
-.teamYearEst {
-  display: flex;
-  position: absolute;
-  bottom: 0px;
-  right: -5px;
-  font-size: small;
-}
-
 .rdt_TableHeadRow {
   font-weight: 700;
+}
+
+.rdt_TableHeader > div {
+  padding-top: 20px !important;
+  padding-left: 60px !important;
 }
 
 .rdt_Pagination {

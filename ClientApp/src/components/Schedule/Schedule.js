@@ -63,7 +63,7 @@ export class Schedule extends Component {
                                         date.games.map(function(item, i) {
                                             return (
                                                 <div key={i} className='col-sm-4 scheduleRow'>
-                                                    <GameCard callback={this.loadFullGameDetails} refreshCallback={this.refreshFullGameDetails} gameId={item.gamePk} />
+                                                    <GameCard showFullStats={true} callback={this.loadFullGameDetails} refreshCallback={this.refreshFullGameDetails} gameId={item.gamePk} />
                                                 </div>
                                             )
                                         }, this)

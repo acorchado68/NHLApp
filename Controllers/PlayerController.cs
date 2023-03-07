@@ -11,9 +11,8 @@ public class PlayerController : ControllerBase
 {
     private readonly ILogger<PlayerController> _logger;
 
-    public PlayerController(ILogger<PlayerController> logger)
+    public PlayerController()
     {
-        _logger = logger;
     }
 
     [HttpGet, Route("GetPlayerById")]

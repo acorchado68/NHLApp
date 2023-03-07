@@ -25,6 +25,26 @@ function getTotalPoints(skaterStats) {
            skaterStats.assists;
 }
 
+export function mapPosition(position) {
+    let mappedPosition = position;
+    switch (position) {
+        case "L":
+            mappedPosition = "LW";
+            break;
+        case "R":
+            mappedPosition = "RW";
+            break;
+    }
+
+    return mappedPosition;
+}
+
+export function getDateOfBirth(dateOfBirth, monthType) {
+    var options = { year: 'numeric', month: monthType, day: 'numeric' };
+    var date = new Date(dateOfBirth);
+    return date.toLocaleDateString("en-US", options);
+}
+
 export const getGoalieData = (ids, goalies) => {
     const goalieData = [];
     ids.map(function (id, index) {

@@ -1,18 +1,12 @@
 import { Component } from "react";
+import { getDateOfBirth } from "../../common/commonFunctions";
 
 export class PlayerInformation extends Component {
     constructor(props) {
         super(props);
         this.state = { };
-        this.getDateOfBirth = this.getDateOfBirth.bind(this);
         this.getBirthplace = this.getBirthplace.bind(this);
         this.getShootsCatches = this.getShootsCatches.bind(this);
-    }
-
-    getDateOfBirth(dateOfBirth) {
-        var options = { year: 'numeric', month: 'long', day: 'numeric' };
-        var date = new Date(dateOfBirth);
-        return date.toLocaleDateString("en-US", options);
     }
     
     getBirthplace(birthCity, birthStateProvince, birthCountry) {
@@ -45,15 +39,15 @@ export class PlayerInformation extends Component {
                     <div className="col-1"></div>
                     <div className="col-4">
                         <h3>About</h3>
-                        <div style={{"fontWeight": "bold"}}>Born: {this.getDateOfBirth(this.props.player.birthDate)}</div>
-                        <div style={{"fontWeight": "bold"}}>Birthplace: {this.getBirthplace(this.props.player.birthCity, this.props.player.birthStateProvince, this.props.player.birthCountry)}</div>
+                        <div>Born: {getDateOfBirth(this.props.player.birthDate, 'long')}</div>
+                        <div>Birthplace: {this.getBirthplace(this.props.player.birthCity, this.props.player.birthStateProvince, this.props.player.birthCountry)}</div>
                         {
                             this.props.player.isGoalie ?
                             (
-                                <div style={{"fontWeight": "bold"}}>Catches: {this.getShootsCatches(this.props.player.shootsCatches)}</div>
+                                <div>Catches: {this.getShootsCatches(this.props.player.shootsCatches)}</div>
                             ) :
                             (
-                                <div style={{"fontWeight": "bold"}}>Shoots: {this.getShootsCatches(this.props.player.shootsCatches)}</div>
+                                <div>Shoots: {this.getShootsCatches(this.props.player.shootsCatches)}</div>
                             )
                         }
                     </div>

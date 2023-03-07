@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import DataTableBase from "../common/DataTableBase";
 import fallbackImage from "./images/headshot.jpg";
+import { mapPosition } from "../../common/commonFunctions";
 
 export class PlayerSearchResults extends Component {
     constructor(props) {
@@ -10,7 +11,6 @@ export class PlayerSearchResults extends Component {
         this.getColumnHeaders = this.getColumnHeaders.bind(this);
         this.getDefaultSrc = this.getDefaultSrc.bind(this);
         this.handlePlayerClick = this.handlePlayerClick.bind(this);
-        this.mapPosition = this.mapPosition.bind(this);
     }
 
     componentDidMount() {
@@ -19,20 +19,6 @@ export class PlayerSearchResults extends Component {
 
     getDefaultSrc(event) {
         event.target.src = fallbackImage;
-    }
-    
-    mapPosition(position) {
-        let mappedPosition = position;
-        switch (position) {
-            case "L":
-                mappedPosition = "LW";
-                break;
-            case "R":
-                mappedPosition = "RW";
-                break;
-        }
-
-        return mappedPosition;
     }
 
     handlePlayerClick(event, playerId) {
@@ -61,7 +47,7 @@ export class PlayerSearchResults extends Component {
                                             {row.fullName}
                                         </div>
                                         <div style={{"paddingLeft": "10px"}}>
-                                            #{row.playerNumber} - {this.mapPosition(row.position)}
+                                            #{row.playerNumber} - {mapPosition(row.position)}
                                         </div>
                                     </div>
                                 </a>

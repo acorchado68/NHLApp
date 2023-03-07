@@ -1,7 +1,6 @@
 import { Home } from "./components/Home";
 import { Standings } from "./components/Standings/Standings";
 import { Statistics } from "./components/Statistics/Statistics";
-import { Schedule } from "./components/Schedule/Schedule";
 import { Players } from "./components/Players/Players"
 import { default as Team } from "./components/Team/Team";
 
@@ -18,10 +17,6 @@ const AppRoutes = [
   {
     path: '/statistics',
     element: <Statistics />
-  },
-  {
-    path: '/schedule',
-    element: <Schedule />
   },
   {
     path: '/players',
