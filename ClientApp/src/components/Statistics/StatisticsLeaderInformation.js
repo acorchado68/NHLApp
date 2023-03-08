@@ -67,7 +67,6 @@ export class StatisticsLeaderInformation extends Component {
     render() {
         return (
             <div className="statsLeaderContent">
-                {/* add links to player page */}
                 <a className="image-with-floating-item-container">
                     <div className="team-display-container">
                         <div className="team-display">
@@ -87,7 +86,6 @@ export class StatisticsLeaderInformation extends Component {
                             <span>{this.getCurrentPlayerLastName()}</span>
                         </div>
                     </a>
-                    {/* add links to team page */}
                     <a className="leaderTeamContainer">
                         <span>{this.getCurrentPlayerTeam()}</span>
                         {

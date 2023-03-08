@@ -1,5 +1,6 @@
 import { Component } from "react";
-import { StatisticsLeaderInformation } from "./StatisticsLeaderInformation"
+import { StatisticsLeaderInformation } from "./StatisticsLeaderInformation";
+import { Link } from 'react-router-dom';
 import '../Main.css';
 
 export class StatisticsLeadersDisplay extends Component {
@@ -125,7 +126,7 @@ export class StatisticsLeadersDisplay extends Component {
                                         <li key={item.player.id} 
                                             onMouseEnter={() => this.handleHover(i)}
                                             className={"statsLeadersListItem " + (this.state.firstItemActive && i === 0 ? 'active' : '')}>
-                                            <span>{item.player.fullName}</span>
+                                            <Link to={'/players/' + item.player.id}>{item.player.fullName}</Link>
                                             {
                                                 skaterType === "goalie"
                                                 ? <span>{this.getStat(item.goalieStatisticsData)}</span>
