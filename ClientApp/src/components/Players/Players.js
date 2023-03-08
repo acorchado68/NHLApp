@@ -11,7 +11,7 @@ export class Players extends Component {
             searchValue: '',
             searchTextInvalid: false,
             searchExecuted: false,
-            selectedPlayerId: '',
+            selectedPlayerId: window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1) ?? '',
         }
         this.handleSearchClick = this.handleSearchClick.bind(this);
         this.loadFullPlayerData = this.loadFullPlayerData.bind(this);
@@ -83,7 +83,7 @@ export class Players extends Component {
                     
                 }
                 {
-                    this.state.selectedPlayerId !== '' &&
+                    this.state.selectedPlayerId !== '' && !isNaN(this.state.selectedPlayerId) &&
                     <div style={{"paddingTop": "20px"}}>
                         <FullPlayerDetails playerId={this.state.selectedPlayerId} />
                     </div>
@@ -94,7 +94,6 @@ export class Players extends Component {
 
     render() {
         let contents = this.renderPlayers(this.state.players);
-
         return (
             <div>
                 {contents}

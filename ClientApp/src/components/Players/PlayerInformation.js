@@ -57,7 +57,9 @@ export class PlayerInformation extends Component {
                             <img src={this.props.player.playerHeadshotImageLink} className="playerHeadshot" onError={(e) => this.getDefaultSrc(e)} />
                         </div>
                         <div className="fullDetailsCenterAlignment playerFullDetailsPlayerInfo" style={{"paddingTop": "10px"}}>
-                            <span>{this.props.player.fullName}&nbsp;|&nbsp;#{this.props.player.primaryNumber}</span>
+                            <span>{this.props.player.fullName}&nbsp;
+                                  {this.props.player.captain ? "(C)" : this.props.player.alternateCaptain ? "(A)" : ""}|
+                                  #{this.props.player.primaryNumber}</span>
                             <span></span>
                         </div>
                         <div className="fullDetailsCenterAlignment playerFullDetailsPlayerInfo" style={{"paddingTop": "5px"}}>

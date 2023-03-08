@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import DataTableBase from "../common/DataTableBase";
 import { GameCard } from "../Game/GameCard";
 import { mapPosition, getDateOfBirth } from "../../common/commonFunctions";
@@ -95,7 +95,15 @@ function getColumnHeaders(skaterType) {
                        </div>,
           width: "60px", 
         },
-        { name: '', selector: row => row.fullName, grow: 1.5, },
+        { name: '', 
+          selector: row => row.fullName, 
+          grow: 1.5, 
+          cell: row => <div>
+                           <Link to={'/players/' + row.playerId}>
+                                {row.fullName} {row.captain ? "(C)" : row.alternate ? "(A)" : ""}
+                           </Link>
+                       </div>
+        },
         { name: "#", selector: row => row.jerseyNumber, },
         { name: "Position", selector: row => mapPosition(row.position) },
         { name: "Shoots", selector: row => row.shoots, omit: skaterType === "Goalies" },
@@ -113,7 +121,7 @@ function getPlayerData(roster) {
             headshot: player.playerHeadshotImageLink, fullName: player.fullName, lastName: player.lastName, jerseyNumber: player.primaryNumber,
             position: player.primaryPosition.code, shoots: player.shootsCatches, height: player.height, weight: player.weight,
             birthdate: player.birthDate, birthplace: getBirthplace(player.birthCity, player.birthStateProvince, player.birthCountry),
-            playerId: player.id,
+            playerId: player.id, captain: player.captain, alternate: player.alternateCaptain,
         })
     });
 

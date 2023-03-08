@@ -73,6 +73,9 @@ public class PlayerController : ControllerBase
                 stats = await api.GetPlayerStatisticsYearByYearAsync(playerId);
                 fullDetails.PlayerStatsByYear = stats.Statistics[0].Splits;
             }
+
+            NhlModels.Season.Season season = await api.GetCurrentSeasonAsync();
+            fullDetails.CurrentSeason = season.SeasonId;
         }
 
         return fullDetails;
@@ -105,6 +108,9 @@ public class FullPlayerDetails
 
     [JsonProperty("goalieStats")]
     public List<NhlModels.Player.GoalieSeasonStatisticsSplitYearByYear> GoalieStatsByYear { get; set; }
+
+    [JsonProperty("currentSeason")]
+    public string CurrentSeason { get; set; }
 }
 
 #endregion

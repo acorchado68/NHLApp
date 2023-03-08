@@ -46,10 +46,16 @@ export class FullPlayerDetails extends Component {
                                         {
                                             fullPlayerDetails.player.isGoalie ? 
                                             (
-                                                <PlayerStats stats={fullPlayerDetails.goalieStatsByYear.slice(-1)} showCareerTotals={false} showPlayerTotals={false} />
+                                                <PlayerStats stats={fullPlayerDetails.goalieStatsByYear.filter(s => s.season === fullPlayerDetails.currentSeason)} 
+                                                             showCareerTotals={false} 
+                                                             showPlayerTotals={false} 
+                                                />
                                             ) :
                                             (
-                                                <PlayerStats stats={fullPlayerDetails.playerStatsByYear.slice(-1)} showCareerTotals={false} showPlayerTotals={true} />
+                                                <PlayerStats stats={fullPlayerDetails.playerStatsByYear.filter(s => s.season === fullPlayerDetails.currentSeason)} 
+                                                             showCareerTotals={false} 
+                                                             showPlayerTotals={true} 
+                                                />
                                             )
                                         }
                                     </div>
@@ -67,10 +73,16 @@ export class FullPlayerDetails extends Component {
                                     {
                                         fullPlayerDetails.player.isGoalie ? 
                                         (
-                                            <PlayerStats stats={fullPlayerDetails.goalieStatsByYear.filter(stat => stat.league.id === 133)} showCareerTotals={true} showPlayerTotals={false} />
+                                            <PlayerStats stats={fullPlayerDetails.goalieStatsByYear.filter(stat => stat.league.id === 133)} 
+                                                         showCareerTotals={true} 
+                                                         showPlayerTotals={false} 
+                                            />
                                         ) :
                                         (
-                                            <PlayerStats stats={fullPlayerDetails.playerStatsByYear.filter(stat => stat.league.id === 133)} showCareerTotals={true} showPlayerTotals={true} />
+                                            <PlayerStats stats={fullPlayerDetails.playerStatsByYear.filter(stat => stat.league.id === 133)} 
+                                                         showCareerTotals={true} 
+                                                         showPlayerTotals={true} 
+                                            />
                                         )
                                     }
                                 </div>

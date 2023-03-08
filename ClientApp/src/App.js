@@ -1,22 +1,25 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import AppRoutes from './AppRoutes';
+import { Home } from './components/Home';
 import { Layout } from './components/Layout';
+import { Players } from './components/Players/Players';
+import { Standings } from './components/Standings/Standings';
+import { Statistics } from './components/Statistics/Statistics';
+import Team from './components/Team/Team';
 import './custom.css';
 
-export default class App extends Component {
-  static displayName = App.name;
-
-  render() {
+export default function App() {
+    
     return (
       <Layout>
         <Routes>
-          {AppRoutes.map((route, index) => {
-            const { element, ...rest } = route;
-            return <Route key={index} {...rest} element={element} />;
-          })}
+          <Route exact path='/' index element={<Home />} />
+          <Route exact path='/standings' element={<Standings />} />
+          <Route exact path='/statistics' element={<Statistics />} />
+          <Route exact path='/players' element={<Players />} />
+          <Route exact path='/players/:id' element={<Players />} />
+          <Route exact path='/team/:id' element={<Team />} />
         </Routes>
       </Layout>
     );
-  }
 }
